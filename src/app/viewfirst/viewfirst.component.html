@@ -1,0 +1,451 @@
+<!-- ======= Header ======= -->
+<header id="header" class="header d-flex align-items-center">
+  <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+    <div class="logo-container">
+      <a href="index.html" class="logo">
+        <img src="assets/img/tnhb-logo.png" alt="Center Logo">
+      </a>
+      <span class="logo-text">Tamil Nadu Housing Board</span>
+
+      <a href="#" class="logo">
+        <img src="assets/img/tn_logo.png" alt="Right Logo">
+      </a>
+      <span class="logo-text">தமிழ்நாடு வீட்டு வசதி வாரியம்</span>
+
+      <a href="#" class="logo">
+        <img src="assets/img/100years.png" alt="Right Logo">
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+    </div>
+
+    <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+    <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a style="text-decoration: none;  color: rgba(255, 255, 255, 0.7);" [routerLink]="['/home']">Home</a></li>
+        <li><a style="text-decoration: none; " [routerLink]="['/addproject/add-items-layout']">Add Layout</a></li>
+        <li><a style="text-decoration: none; color: rgba(255, 255, 255, 0.7);"
+            [routerLink]="['/addproject/add-items']">Add Project</a></li>
+        <li><a style="text-decoration: none; color: rgba(255, 255, 255, 0.7);" [routerLink]="['/report']">Report</a>
+        </li>
+        <li><a style="text-decoration: none; color: rgba(255, 255, 255, 0.7);" [routerLink]="['']">Logout</a></li>
+      </ul>
+    </nav><!-- .navbar -->
+
+  </div>
+</header><!-- End Header -->
+
+<main id="main">
+
+  <!-- ======= Breadcrumbs ======= -->
+  <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/breadcrumbs-bg.jpg');">
+    <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+      <h2>Project</h2>
+
+
+    </div>
+  </div><!-- End Breadcrumbs -->
+
+
+  <!-- FAQs Start -->
+  <div class="faqs">
+    <div class="container">
+      <div style="text-align: center;" *ngIf="projectone.length === 0">
+        <h2 style="color: red;">
+
+          No Record Found for Current Month</h2>
+        <br>
+        <div class="section-header text-center" *ngFor="let projects of comparedateold">
+          <h5>Last Updated by <span style="color:blue"> {{projects.editby}}</span> on {{projects.timestamp }}</h5>
+          <div class="single">
+            <div class="comment-form wow fadeInUp">
+
+              <a class="btn" routerLink="/editproject/{{ projects.mid }}" style="display: inline-block;"><i
+                  class="bi bi-pen-fill"></i> Edit</a>
+              <a class="btn ml-3" (click)="Delete( projects.project_name )" style="display: inline-block;"><i
+                  class="bi bi-trash-fill"></i> Delete</a>
+              <a class="btn ml-3" [routerLink]="['/viewproject',projects.project_name]"
+                style="display: inline-block;"><i class="bi bi-search"></i> View More</a>
+              <a class="btn ml-3" (click)="Print()" style="display: inline-block;"><i
+                  class="bi bi-cloud-download-fill"></i> Download Report</a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="projectone.length > 0">
+        <div class="section-header text-center" *ngFor="let projects of projectone">
+          <div style="display: flex;">
+            <div style="flex: 1; margin-right: 10px;">
+              <h2>{{ projects.project_name }}</h2>
+            </div>
+            <div style="flex: 1; margin-right: 10px;">
+              <h2>{{ projects.contractorName }}</h2>
+            </div>
+            <div style="flex: 1;">
+              <h2>{{ projects.developmentWork }}</h2>
+            </div>
+          </div>
+
+          <br />
+          <h5>Last Updated by <span style="color:blue">{{projects.editby}}</span> on {{projects.timestamp }}</h5>
+          <div class="single">
+            <div class="comment-form wow fadeInUp">
+              <a class="btn" [routerLink]="['/editproject', projects.mid]" style="display: inline-block;"><i
+                  class="bi bi-pen-fill"></i> Edityu</a>
+              <a class="btn ml-3" (click)="Delete( projects.project_name )" style="display: inline-block;"><i
+                  class="bi bi-trash-fill"></i> Delete</a>
+              <a class="btn ml-3" [routerLink]="['/viewproject',projects.project_name]"
+                style="display: inline-block;"><i class="bi bi-search"></i> View More</a>
+              <a class="btn ml-3" (click)="Print()" style="display: inline-block;"><i
+                  class="bi bi-cloud-download-fill"></i> Download Report</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="containerbox">
+
+        <div class="box" *ngIf="duedatefinal > 0">
+          <div class="percent">
+            <svg>
+              <circle cx="70" cy="70" r="70"></circle>
+              <circle cx="70" cy="70" r="70"></circle>
+            </svg>
+            <div class="num">
+              <h2>{{duedatefinal}}<span>days</span></h2>
+            </div>
+          </div>
+          <h5 class="text">Time left for completion </h5>
+        </div>
+
+        <div class="box1" *ngIf="duedatefinal < 0">
+          <div class="percent">
+            <svg>
+              <circle cx="70" cy="70" r="70"></circle>
+              <circle cx="70" cy="70" r="70"></circle>
+            </svg>
+            <div class="num">
+              <h2>{{duedatefinal}}<span>days</span></h2>
+            </div>
+          </div>
+          <h6 class="text">Over Due</h6>
+        </div>
+
+      </div>
+
+      <!-- <div class="wrapper"> -->
+      <div class="row">
+        <div class="col-md-6 text-left">
+          <div id="accordion-1">
+            <div class="icon ">
+              <div class="section-header text-center">
+                <h2>
+                  <a1 style="color:#feb900 ;" role="button" (click)="decreaseFrom()"><i
+                      class="bi bi-arrow-left-circle-fill"></i></a1>
+                  {{ monthnameold }}
+                  <a1 style="color:#feb900 ;" role="button" (click)="increaseFrom()"><i
+                      class="bi bi-arrow-right-circle-fill"></i></a1>
+                </h2>
+              </div>
+            </div>
+
+
+
+            <div class="card wow fadeInLeft" data-wow-delay="0.7s">
+              <div class="card-header">
+                <a class="card-link collapsed">
+                  <span
+                    style="color: blue; width: 300px;clear: left;float: left;text-align: right;padding-right: 10px;">DOC:-</span><span
+                    style="font-weight: bold;"> {{fromData.dateOfCommencement }}
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div class="card wow fadeInLeft" data-wow-delay="0.7s">
+              <div class="card-header">
+                <a class="card-link collapsed">
+                  <span
+                    style="color: blue; width: 300px;clear: left;float: left;text-align: right;padding-right: 10px;">DDC:-</span><span
+                    style="font-weight: bold;"> {{fromData.dueDateOfCompletion}}
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <div class="card wow fadeInLeft" data-wow-delay="0.8s">
+              <div class="card-header">
+                <a class="card-link collapsed">
+                  <span
+                    style="color: blue; width: 300px;clear: left;float: left;text-align: right;padding-right: 10px;">Physical
+                    Progress(%):-</span><span style="font-weight: bold;"> {{fromData.physicalProgress}}</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="card wow fadeInLeft" data-wow-delay="0.8s">
+              <div class="card-header">
+                <a class="card-link collapsed">
+                  <span
+                    style="color: blue; width: 300px;clear: left;float: left;text-align: right;padding-right: 10px;">Financial
+                    Progress(%):-</span><span style="font-weight: bold;"> {{fromData.financialProgress}}</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="single">
+              <div class="comment-form wow fadeInUp">
+                <a class="btn" data-toggle="modal" data-target="#modalRegisterForm" style="display: inline-block;"><i
+                    class="bi bi-search"></i> View Comments</a>
+              </div>
+            </div>
+
+            <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Comments</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                      {{fromData.comments}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-6">
+          <div id="accordion-2">
+
+            <div class="icon ">
+              <div class="section-header text-center">
+                <h2>
+                  <a1 style="color:#feb900 ;" role="button" (click)="decreaseTo()"><i
+                      class="bi bi-arrow-left-circle-fill"></i></a1>
+                  {{ monthnamecurrent }}
+                  <a1 style="color:#feb900 ;" role="button" (click)="increaseTo()"><i
+                      class="bi bi-arrow-right-circle-fill"></i></a1>
+                </h2>
+              </div>
+            </div>
+            <div class="card wow fadeInRight" data-wow-delay="0.9s">
+
+
+              <div *ngIf="fromData.dateOfCommencement == toData.dateOfCommencement">
+                <div class="card-header3">
+                  <a class="card-link collapsed">
+                    <span style="font-weight: bold;">{{toData.dateOfCommencement}}
+                    </span></a>
+                </div>
+              </div>
+              <div *ngIf="fromData.dateOfCommencement != toData.dateOfCommencement">
+                <div class="card-header1">
+                  <a class="card-link collapsed">
+                    <span style="font-weight: bold;">{{toData.dateOfCommencement}}
+                    </span></a>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="card wow fadeInRight" data-wow-delay="0.9s">
+              <div *ngIf="fromData.dueDateOfCompletion== toData.dueDateOfCompletion">
+                <div class="card-header3">
+                  <a class="card-link collapsed">
+                    <span style="font-weight: bold;">{{toData.dueDateOfCompletion}}
+                    </span></a>
+                </div>
+              </div>
+              <div *ngIf="fromData.dueDateOfCompletion != toData.dueDateOfCompletion">
+                <div class="card-header1">
+                  <a class="card-link collapsed">
+                    <span style="font-weight: bold;">{{toData.dueDateOfCompletion}}
+                    </span></a>
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="card wow fadeInRight" data-wow-delay="0.10s">
+
+
+              <div *ngIf="fromData.physicalProgress == toData.physicalProgress">
+                <div class="card-header3">
+                  <a class="card-link collapsed">
+                    <span style="font-weight: bold;">{{toData.physicalProgress}}
+                    </span></a>
+                </div>
+              </div>
+              <div *ngIf="fromData.physicalProgress != toData.physicalProgress">
+                <div class="card-header1">
+                  <a class="card-link collapsed">
+                    <span style="font-weight: bold;">{{toData.physicalProgress}}
+                    </span></a>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="card wow fadeInRight" data-wow-delay="0.10s">
+
+
+              <div *ngIf="fromData.financialProgress == toData.financialProgress">
+                <div class="card-header3">
+                  <a class="card-link collapsed">
+                    <span style="font-weight: bold;">{{toData.financialProgress}}
+                    </span></a>
+                </div>
+              </div>
+              <div *ngIf="fromData.financialProgress != toData.financialProgress">
+                <div class="card-header1">
+                  <a class="card-link collapsed">
+                    <span style="font-weight: bold;">{{toData.financialProgress}}
+                    </span></a>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="single" *ngIf="projectone.length > 0">
+              <div class="comment-form wow fadeInUp">
+                <a class="btn" data-toggle="modal" data-target="#modaltry" style="display: inline-block;"><i
+                    class="bi bi-pen"></i> Add Comments</a>
+              </div>
+            </div>
+
+            <div class="modal fade" id="modaltry" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Comments</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body mx-3" *ngIf="!submitted">
+                    <div class="md-form mb-5">
+                      <input type="text" class="form-control " id="comments" [(ngModel)]="addproject.comments"
+                        name="comments">
+                    </div>
+                  </div>
+                  <div class="single d-flex justify-content-center">
+                    <div class="comment-form wow fadeInUp">
+
+                      <h4>{{ message }}</h4>
+                      <a class="btn" type="submit" (click)="updateProjectComment()">Add Comments</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <br />
+      <br />
+      <br />
+
+      <!-- <div class="containerbox">
+
+        <div class="box" *ngIf="duedatefinal > 0">
+          <div class="percent">
+            <svg>
+              <circle cx="70" cy="70" r="70"></circle>
+              <circle cx="70" cy="70" r="70"></circle>
+            </svg>
+            <div class="num">
+              <h2>{{duedatefinal}}<span>days</span></h2>
+            </div>
+          </div>
+          <h5 class="text">Time left for completion </h5>
+        </div>
+
+        <div class="box1" *ngIf="duedatefinal < 0">
+          <div class="percent">
+            <svg>
+              <circle cx="70" cy="70" r="70"></circle>
+              <circle cx="70" cy="70" r="70"></circle>
+            </svg>
+            <div class="num">
+              <h2>{{duedatefinal}}<span>days</span></h2>
+            </div>
+          </div>
+          <h6 class="text">Over Due</h6>
+        </div>
+
+      </div> -->
+
+    </div>
+
+  </div>
+
+
+  <!-- FAQs End -->
+
+
+
+  <!-- End Service Details Section -->
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+
+  <div class="footer-content position-relative">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-info">
+            <h3>TNHB</h3>
+            <p>
+              CMDA Complex, E&C Market Road,
+              Koyambedu, <br />
+              Chennai - 600 107<br /><br />
+              <strong>Phone:</strong>(044)24794201<br />
+              <strong>Email:</strong>contact@tnhb.com<br />
+            </p>
+            <div class="social-links d-flex mt-3">
+              <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div><!-- End footer info column-->
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-legal text-center position-relative">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>BOCXY</span></strong>. All Rights Reserved
+      </div>
+
+    </div>
+  </div>
+
+</footer>
+
+<!-- End Footer -->

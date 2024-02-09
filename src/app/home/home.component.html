@@ -1,0 +1,263 @@
+
+
+
+<header id="header" class="header d-flex align-items-center">
+
+
+  <div class="container-fluid container-xl">
+    <!-- Logo and related content -->
+    <div class="logo-container">
+      <a href="index.html" class="logo">
+        <img src="assets/img/tnhb-logo.png" alt="Center Logo">
+      </a>
+      <span class="logo-text">Tamil Nadu Housing Board</span>
+
+      <a href="#" class="logo">
+        <img src="assets/img/tn_logo.png" alt="Right Logo">
+      </a>
+      <span class="logo-text">தமிழ்நாடு வீட்டு வசதி வாரியம்</span>
+
+      <a href="#" class="logo">
+        <img src="assets/img/100years.png" alt="Right Logo">
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+    </div>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a style="text-decoration: none;" [routerLink]="['/home']" class="active">Home</a></li>
+        <li><a  style="text-decoration: none; " [routerLink]="['/addlayout/add-items-layout']">Add Layout</a></li>
+        <li><a style="text-decoration: none;" [routerLink]="['/addproject/add-items']">Add Project</a></li>
+        <li><a style="text-decoration: none;" [routerLink]="['/report']">Report</a></li>
+        <li><a style="text-decoration: none;" [routerLink]="['']">Logout</a></li>
+        <li><a style="color:white" type="submit" (click)="changeFont('+')">A+</a></li>
+        <li><a style="color:white" type="submit" (click)="changeFont('-')">A-</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  </header><!-- End Header -->
+  <section id="hero" class="hero" >
+
+    <div class="info d-flex align-items-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6 text-center">
+            <h2  data-aos="fade-down">TNHB'S Project &nbsp;<span>Monitoring Platform</span></h2>
+
+            <a data-aos="" data-aos-delay="200"class="btn-get-started">WELCOME</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
+
+      <div class="carousel-item active" style="background-image: url(assets/img/TNGRHS-ariyalur.png)"></div>
+      <div class="carousel-item" style="background-image: url(assets/img/tnhbflat.png)"></div>
+      <div class="carousel-item" style="background-image: url(assets/img/TNGRHS.png)"></div>
+      <!-- <div class="carousel-item" style="background-image: url(assets/img/222 Virudhunagar.jpg)"></div> -->
+      <!-- <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-5.jpg)"></div> -->
+
+      <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a>
+
+    </div>
+
+  </section><!-- End Hero Section -->
+
+  <main id="main" >
+
+
+  <section id="services" class="services section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-header">
+        <h2>Projects</h2>
+      </div>
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" id="myTabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="layout-tab" data-toggle="tab" href="#layout" role="tab" aria-controls="layout" aria-selected="true">Monitoring of Layout Development</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="building-tab" data-toggle="tab" href="#building" role="tab" aria-controls="building" aria-selected="false">Monitoring Of Projects</a>
+        </li>
+      </ul>
+<br>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <!-- Layout Projects Tab -->
+        <div class="tab-pane fade show active" id="layout" role="tabpanel" aria-labelledby="layout-tab">
+          <!-- Your code for Layout Projects goes here -->
+          <div class="btn-group">
+            <button type="button" class="btn btn-warning" >Divisions</button>
+            <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu" *ngFor="let item of filterDatadiv | keyvalue" >
+              <a class="dropdown-item" (click)="applyFilters(item.key , divi)" *ngFor="let divi of divisionname">{{ divi }}</a>
+
+            </div>
+          </div>
+          <!-- Example split warning button -->
+          <div class="btn-group">
+            <button type="button" class="btn btn-warning ml-3">FS Value</button>
+            <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu" *ngFor="let item of filterDatafs  | keyvalue">
+              <a class="dropdown-item" role="button" (click)="Above10crore()">Above 10 Crores</a>
+              <a class="dropdown-item" role="button" (click)="Below10crore()">Upto 10 Crores</a>
+
+            </div>
+          </div>
+          <!-- <div class="btn-group">
+            <button type="button" class="btn btn-warning ml-3">Type of Work</button>
+            <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu" *ngFor="let item of filterDatawork | keyvalue">
+              <a class="dropdown-item" (click)="applyFilters(item.key, worktype)" *ngFor="let worktype of typeofworkname">{{ worktype }}</a>
+
+            </div>
+          </div> -->
+          <div class="btn-group">
+            <button type="button" class="btn btn-warning ml-3" (click)="clearFilters()">Clear Filter</button>
+            </div>
+          <br>
+          <br>
+          <div class="row gy-4">
+            <div *ngFor="let layout of uniqueLayouts" class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="service-item position-relative">
+                <div class="icon">
+                  <i class="fa-solid fa-mountain-city"></i>
+                </div>
+                <h3>{{ layout.project_name }}</h3>
+                  <p></p>
+                <a [routerLink]="['/viewfirstlayout', layout.project_name ]" class="readmore stretched-link">View more <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Building Projects Tab -->
+        <div class="tab-pane fade" id="building" role="tabpanel" aria-labelledby="building-tab">
+          <div class="btn-group">
+            <button type="button" class="btn btn-warning" >Divisions</button>
+            <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu" *ngFor="let item of filterDatadiv | keyvalue" >
+              <a class="dropdown-item" (click)="applyFilters(item.key , divi)" *ngFor="let divi of divisionname">{{ divi }}</a>
+
+            </div>
+          </div>
+          <!-- Example split warning button -->
+          <div class="btn-group">
+            <button type="button" class="btn btn-warning ml-3">FS Value</button>
+            <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu" *ngFor="let item of filterDatafs  | keyvalue">
+              <a class="dropdown-item" role="button" (click)="Above10crore()">Above 10 Crores</a>
+              <a class="dropdown-item" role="button" (click)="Below10crore()">Upto 10 Crores</a>
+
+            </div>
+          </div>
+          <!-- <div class="btn-group">
+            <button type="button" class="btn btn-warning ml-3">Type of Work</button>
+            <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu" *ngFor="let item of filterDatawork | keyvalue">
+              <a class="dropdown-item" (click)="applyFilters(item.key, worktype)" *ngFor="let worktype of typeofworkname">{{ worktype }}</a>
+
+            </div>
+          </div> -->
+          <div class="btn-group">
+            <button type="button" class="btn btn-warning ml-3" (click)="clearFilters()">Clear Filter</button>
+            </div>
+          <br>
+          <br>
+          <!-- Your code for Building Projects goes here -->
+          <div class="row gy-4">
+            <div *ngFor="let project of uniqueProjects" class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="service-item position-relative">
+                <div class="icon">
+                  <i class="fa-solid fa-mountain-city"></i>
+                </div>
+                <h3>{{ project.project_name }}</h3>
+                <p></p>
+                <a [routerLink]="['/viewfirst', project.project_name ]" class="readmore stretched-link">View more <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rest of your existing code -->
+      <!-- ... -->
+
+    </div>
+  </section>
+
+    <!-- ======= Alt Services Section ======= -->
+
+
+  </main><!-- End #main -->
+
+<footer id="footer" class="footer">
+
+    <div class="footer-content position-relative">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-info">
+              <h3>TNHB</h3>
+              <p>
+                CMDA Complex, E&C Market Road,
+                Koyambedu,  <br>
+                Chennai - 600 107<br><br>
+                <strong>Phone:</strong>(044)24794201<br>
+                <strong>Email:</strong>contact@tnhb.com<br>
+              </p>
+              <div class="social-links d-flex mt-3">
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div><!-- End footer info column-->
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-legal text-center position-relative">
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>BOCXY</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </footer>
+
+

@@ -1,0 +1,521 @@
+<!-- ======= Header ======= -->
+<header id="header" class="header d-flex align-items-center">
+  <div class="container-fluid container-xl">
+
+    <div class="logo-container">
+      <a href="index.html" class="logo">
+        <img src="assets/img/tnhb-logo.png" alt="Center Logo">
+      </a>
+      <span class="logo-text">Tamil Nadu Housing Board</span>
+
+      <a href="#" class="logo">
+        <img src="assets/img/tn_logo.png" alt="Right Logo">
+      </a>
+      <span class="logo-text">தமிழ்நாடு வீட்டு வசதி வாரியம்</span>
+
+      <a href="#" class="logo">
+        <img src="assets/img/100years.png" alt="Right Logo">
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+    </div>
+
+    <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+    <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a style="text-decoration: none; color: rgba(255, 255, 255, 0.7);" [routerLink]="['/home']">Home</a></li>
+        <li><a style="text-decoration: none; " [routerLink]="['/addproject/add-items-layout']">Add Layout</a></li>
+        <li><a style="text-decoration: none; " [routerLink]="['/addproject/add-items']" class="active">Add Project</a>
+        </li>
+        <li><a style="text-decoration: none;color: rgba(255, 255, 255, 0.7);" [routerLink]="['/report']">Report</a></li>
+        <li><a style="text-decoration: none; color: rgba(255, 255, 255, 0.7);" [routerLink]="['']">Logout</a></li>
+      </ul>
+    </nav><!-- .navbar -->
+
+  </div>
+</header><!-- End Header -->
+
+<main id="main">
+
+  <!-- ======= Breadcrumbs ======= -->
+  <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/breadcrumbs-bg.jpg');">
+    <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+      <h2>Monitoring Of Projects</h2>
+
+    </div>
+  </div><!-- End Breadcrumbs -->
+  <section id="get-started" class="get-started section-bg">
+    <div class="container">
+
+      <div class="row justify-content-between gy-4">
+
+        <div class="col-lg-12" data-aos="fade">
+          <form class="php-email-form" #myForm="ngForm">
+            <div *ngIf="!submitted">
+              <h2>Part-1-Construction Work</h2>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <h6 class="text-secondary">Project Name <span class="required-asterisk">*</span></h6>
+                  <input type="text" class="form-control" id="project_name" [(ngModel)]="addproject.project_name"
+                    name="project_name" required>
+                </div>
+
+                <div class="col">
+                  <h6 class="text-secondary">Project Code <span class="required-asterisk">*</span></h6>
+                  <input type="text" class="form-control" id="uniquecode" [(ngModel)]="addproject.uniquecode"
+                    name="uniquecode" required>
+                </div>
+                <div class="col">
+                  <h6 class="text-secondary">City/Rural <span class="required-asterisk">*</span></h6>
+
+                  <select type="text" class="form-control" id="citynrural" [(ngModel)]="addproject.citynrural"
+                    name="citynrural" required>
+                    <option>Select</option>
+                    <option *ngFor="let city of cityNames"> {{ city }} </option>
+                  </select>
+                </div>
+
+                <div class="col">
+                  <div class="row">
+                    <h6 class="text-secondary">Circle <span class="required-asterisk">*</span></h6>
+                    <div class="col">
+                      <select type="text" class="form-control" id="circle" [(ngModel)]="addproject.circle" name="circle"
+                        required>
+                        <option>Select</option>
+                        <option *ngFor="let cir of circleNames"> {{ cir }} </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <h6 class="text-secondary">Division <span class="required-asterisk">*</span></h6>
+
+                  <select type="text" class="form-control" id="division" [(ngModel)]="addproject.division"
+                    name="division" required>
+                    <option>Select</option>
+                    <option *ngFor="let divi of divisionNames"> {{ divi }} </option>
+
+                  </select>
+                </div>
+
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <div class="row">
+                    <div class="col">
+                      <h6 class="text-secondary">Village <span class="required-asterisk">*</span></h6>
+                      <input type="text" class="form-control" id="village" [(ngModel)]="addproject.village"
+                        name="village" required>
+                    </div>
+                    <div class="col">
+                      <h6 class="text-secondary">SF/TS No <span class="required-asterisk">*</span></h6>
+                      <input type="text" class="form-control" id="surveyno" [(ngModel)]="addproject.surveyno"
+                        name="surveyno" required>
+                    </div>
+                    <div class="col">
+                      <h6 class="text-secondary"> Extent(Acres) <span class="required-asterisk">*</span></h6>
+                      <input type="text" class="form-control" id="totalextent" [(ngModel)]="addproject.totalextent"
+                        name="totalextent" required>
+                    </div>
+                    <div class="col">
+                      <h6 class="text-secondary">BR No & Date <span class="required-asterisk">*</span></h6>
+                      <input type="text" class="form-control" id="b_R_No_AndDate"
+                        [(ngModel)]="addproject.b_R_No_AndDate" name="b_R_No_AndDate" required>
+                    </div>
+                    <div class="col">
+                      <h6 class="text-secondary">FS Value(Rs) <span class="required-asterisk">*</span></h6>
+                      <input type="text" class="form-control" id="fsAdministrativesanctionValue" [(ngModel)]="addproject.fsAdministrativesanctionValue"
+                         name="fsAdministrativesanctionValue">
+
+                    </div>
+
+                    <div class="col">
+                      <h6 class="text-secondary">WC79(Rs) <span class="required-asterisk">*</span></h6>
+                      <input type="text" class="form-control" id="wc79" name="wc79" [(ngModel)]="addproject.wc79">
+                      <!-- <div *ngIf="wc79FormControl.invalid && (wc79FormControl.dirty || wc79FormControl.touched)">
+                        <div *ngIf="wc79FormControl.errors.pattern">Only numbers are allowed</div>
+                      </div> -->
+                    </div>
+
+                    <div class="col">
+                      <h6 class="text-secondary">RFS(Rs) <span class="required-asterisk">*</span></h6>
+                      <input type="text" class="form-control" id="revisedFS"  name="revisedFS" [(ngModel)]="addproject.revisedFS">
+                      <!-- <div *ngIf="revisedFSFormControl.invalid && (revisedFSFormControl.dirty || revisedFSFormControl.touched)">
+                        <div *ngIf="revisedFSFormControl.errors.pattern">Only numbers are allowed</div>
+                      </div> -->
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <h6 class="text-secondary">Planning Permission<span class="required-asterisk">*</span></h6>
+                  <input type="text" class="form-control" id="planningPermission"
+                    [(ngModel)]="addproject.planningPermission" name="planningPermission" required>
+                </div>
+                <div class="col">
+                  <h6 class="text-secondary">Building Permission<span class="required-asterisk">*</span></h6>
+                  <input type="text" class="form-control" id="buildingPermission"
+                    [(ngModel)]="addproject.buildingPermission" name="buildingPermission" required>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+
+                <div class="col">
+                  <h6 class="text-secondary">Contractor <span class="required-asterisk">*</span></h6>
+                  <input type="text" class="form-control" id="contractorName" [(ngModel)]="addproject.contractorName"
+                    name="contractorName" required>
+                </div>
+
+                <div class="col">
+                  <h6 class="text-secondary">Agreement Value(Rs) <span class="required-asterisk">*</span></h6>
+                  <input type="text" class="form-control" id="agreementValue1" [(ngModel)]="addproject.agreementValue1"
+                    name="agreementValue1" required (input)="calculateFinancialProgress()">
+                </div>
+                <div class="col">
+                  <h6 class="text-secondary">DOC <span class="required-asterisk">*</span></h6>
+                  <input type="date" class="form-control" id="dateOfCommencement"
+                    [(ngModel)]="addproject.dateOfCommencement" name="dateOfCommencement" required>
+                </div>
+                <div class="col">
+                  <h6 class="text-secondary">DDC <span class="required-asterisk">*</span></h6>
+                  <input type="date" class="form-control" id="dueDateOfCompletion"
+                    [(ngModel)]="addproject.dueDateOfCompletion" name="dueDateOfCompletion" required>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <h6 class="text-secondary">Expenditures(RS) <span class="required-asterisk">*</span></h6>
+                  <input type="text" class="form-control" id="expenditureSoFar"
+                    [(ngModel)]="addproject.expenditureSoFar" name="expenditureSoFar" required
+                    (input)="calculateFinancialProgress()">
+                </div>
+
+                <div class="col">
+                  <h6 class="text-secondary">LC Released(current month)(RS) <span class="required-asterisk">*</span></h6>
+                  <input type="text" class="form-control" id="lc_released_current_month" [(ngModel)]="addproject.lc_released_current_month"
+                     name="lc_released_current_month">
+                  <!-- <div *ngIf="lcReleasedFormControl.invalid && (lcReleasedFormControl.dirty || lcReleasedFormControl.touched)">
+                    <div *ngIf="lcReleasedFormControl.errors.pattern">Only numbers are allowed</div>
+                  </div> -->
+                </div>
+
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <h6 class="text-secondary">Physical Progress(%) <span class="required-asterisk">*</span></h6>
+                  <input type="text" class="form-control" id="physicalProgress"
+                    [(ngModel)]="addproject.physicalProgress" name="physicalProgress" required>
+                </div>
+                <div class="col">
+                  <h6 class="text-secondary">Financial Progress (%) <span class="required-asterisk">*</span></h6>
+                  <input type="text" class="form-control" id="financialProgress"
+                    [(ngModel)]="addproject.financialProgress" name="financialProgress" readonly>
+                </div>
+              </div>
+              <br>
+              <h2>Part-2- PMC/Third Party Supervision</h2>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <h6 class="text-secondary">PMC/TP Name <span class="required-asterisk">*</span></h6>
+                  <input type="text" class="form-control" id="pmc" [(ngModel)]="addproject.pmc" name="pmc" required>
+                </div>
+                <div class="col">
+                  <h6 class="text-secondary">Agreement Value(RS)<span class="required-asterisk">*</span></h6>
+                  <input type="text" class="form-control" id="pmcAgreementValue"
+                    [(ngModel)]="addproject.pmcAgreementValue" name="pmcAgreementValue" required>
+                    <!-- <div *ngIf="pmcAgreementValueFormControl.invalid && (pmcAgreementValueFormControl.dirty || pmcAgreementValueFormControl.touched)">
+                      <div *ngIf="pmcAgreementValueFormControl.errors.pattern">Only numbers are allowed</div>
+                    </div> -->
+                </div>
+                <div class="col">
+                  <h6 class="text-secondary">Expenditure(RS) <span class="required-asterisk">*</span></h6>
+                  <input type="text" class="form-control" id="pmcExpenditureSoFar"
+                    [(ngModel)]="addproject.pmcExpenditureSoFar" name="pmcExpenditureSoFar" required>
+                    <!-- <div *ngIf="pmcExpenditureSoFarFormControl.invalid && (pmcExpenditureSoFarFormControl.dirty || pmcExpenditureSoFarFormControl.touched)">
+                      <div *ngIf="pmcExpenditureSoFarFormControl.errors.pattern">Only numbers are allowed</div>
+                    </div> -->
+                </div>
+                <div class="col">
+                  <h6 class="text-secondary">LC Released(RS) <span class="required-asterisk">*</span></h6>
+                  <input type="text" class="form-control" id="pmc_lc_released" [(ngModel)]="addproject.pmc_lc_released"
+                    name="pmc_lc_released" required>
+                    <!-- <div *ngIf="pmc_lc_releasedFormControl.invalid && (pmc_lc_releasedFormControl.dirty || pmc_lc_releasedFormControl.touched)">
+                      <div *ngIf="pmc_lc_releasedFormControl.errors.pattern">Only numbers are allowed</div>
+                    </div> -->
+                </div>
+              </div>
+              <br>
+              <h2>Part-3-Development Work &nbsp;&nbsp;
+                <button type="button" class="btn btn-primary" (click)="addItem()">+</button>&nbsp;&nbsp;
+              </h2>
+              <br>
+              <div>
+                <div [formGroup]="developmentWorkProject">
+                  <div class="row" formArrayName="items">
+                    <div class="section-b col-md-12" *ngFor="let item of items; let i = index" [formGroupName]="i"
+                      style="background-color: #f0f0f0; padding: 15px; margin-bottom: 15px;">
+                      <div style="display: flex;align-items: baseline;">
+                        <h3>{{i + 1}}.{{'Developement Work'}}</h3>&nbsp;<button *ngIf="items.length > 1" type="button"
+                          class="btn btn-danger" style="line-height: 16px !important;margin: 10px;"
+                          (click)="removeDevelopmentProject(i)">x</button>
+                      </div>
+
+                      <div class="row">
+                        <div class="col">
+                          <h6 class="text-secondary">Name of Work <span class="required-asterisk">*</span></h6>
+                          <input type="text" class="form-control" id="developmentWork" formControlName="developmentWork"
+                            name="developmentWork" required>
+                        </div>
+                        <div class="col">
+                          <h6 class="text-secondary">Contractor <span class="required-asterisk">*</span></h6>
+                          <input type="text" class="form-control" formControlName="developmentContractors"
+                            name="developmentContractors" required>
+                        </div>
+                        <div class="col">
+                          <h6 class="text-secondary">Agreement Value(RS) <span class="required-asterisk">*</span></h6>
+                          <input type="text" class="form-control" name="agreementValue" formControlName="agreementValue"
+                            required (input)="calculateFinancialProgressDev(i)">
+                        </div>
+                        <div class="col">
+                          <h6 class="text-secondary">DOC<span class="required-asterisk">*</span></h6>
+                          <input type="date" class="form-control" formControlName="dateOfCompletion"
+                            name="dateOfCompletion" required>
+                        </div>
+                        <div class="col">
+                          <h6 class="text-secondary">DDC <span class="required-asterisk">*</span></h6>
+                          <input type="date" class="form-control" formControlName="dateOfCompletionReport"
+                            name="dateOfCompletionReport" required>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col">
+                          <h6 class="text-secondary">Expenditures(RS) <span class="required-asterisk">*</span></h6>
+                          <input type="text" class="form-control" formControlName="expenditureSoFar1"
+                            name="expenditureSoFar1" required (input)="calculateFinancialProgressDev(i)">
+                        </div>
+                        <div class="col">
+                          <h6 class="text-secondary">LC Released(current month)(RS) <span class="required-asterisk">*</span>
+                          </h6>
+                          <input type="text" class="form-control" name="workLC_released"
+                            formControlName="workLC_released" required>
+                            <!-- <div *ngIf="workLC_releasedFormControl.invalid && (workLC_releasedFormControl.dirty || workLC_releasedFormControl.touched)">
+                              <div *ngIf="workLC_releasedFormControl.errors.pattern">Only numbers are allowed</div>
+                            </div> -->
+                        </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col">
+                          <h6 class="text-secondary">Physical Progress(%) <span class="required-asterisk">*</span>
+                          </h6>
+                          <input type="text" class="form-control" id="physicalProgressDev"
+                            formControlName="physicalProgressDev" name="physicalProgressDev" required>
+                        </div>
+                        <div class="col">
+                          <h6 class="text-secondary">Financial Progress (%) <span class="required-asterisk">*</span>
+                          </h6>
+                          <input type="text" class="form-control" id="financialProgressDev"
+                            formControlName="financialProgressDev" name="financialProgressDev" readonly>
+                        </div>
+                      </div>
+                      <br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <br>
+              <h2>Part-4-Service Connection</h2>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <h6 class="text-secondary">TANGEDCO <span class="required-asterisk">*</span></h6>
+
+                  <select class="form-control" [(ngModel)]="addproject.eb" name="eb" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+
+
+                </div>
+
+
+                <div class="col">
+                  <h6 class="text-secondary">CMWSSB/TWAD <span class="required-asterisk">*</span></h6>
+                  <select class="form-control" [(ngModel)]="addproject.cmwssb_twad" name="cmwssb_twad" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                  <!-- <input type="text" class="form-control" id="cmwssb_twad" [(ngModel)]="addproject.cmwssb_twad" name="cmwssb_twad" required   > -->
+                </div>
+
+                <div class="col">
+                  <h6 class="text-secondary">Completion Certificate <span class="required-asterisk">*</span></h6>
+                  <select class="form-control" id="completionCertificate" [(ngModel)]="addproject.completionCertificate"
+                    name="completionCertificate" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+                <br>
+                <div *ngIf="addproject.completionCertificate === 'Yes'">
+                  <br>
+                  <div class="row ">
+                    <div class="col">
+                      <h6 class="text-secondary">Date Of Completion Report <span class="required-asterisk">*</span></h6>
+                      <input type="date" class="form-control" id="dateOfCompletionReport1"
+                        [(ngModel)]="addproject.dateOfCompletionReport1" name="dateOfCompletionReport1" required>
+                    </div>
+
+                    <div class="col">
+                      <label for="profile" class="form-label">Attach Document</label>
+                      <input type="file" class="form-control" name="files" multiple (change)="selectFile($event)">
+                      <br>
+                      <div class="col-md-6">
+                        <button type="submit" [disabled]="!selectedFiles"
+                          (click)="upload(addproject.project_name)">Upload</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+
+              </div>
+              <br>
+              <h2>Part-5-General</h2>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <h6 class="text-secondary">Cost(Rs) <span class="required-asterisk">*</span></h6>
+                  <input type="text" class="form-control" id="rera" [(ngModel)]="addproject.costingStatus" name="rera"
+                    required>
+                    <!-- <div *ngIf="costingStatusFormControl.invalid && (costingStatusFormControl.dirty || costingStatusFormControl.touched)">
+                      <div *ngIf="costingStatusFormControl.errors.pattern">Only numbers are allowed</div>
+                    </div> -->
+                </div>
+                <div class="col">
+                  <h6 class="text-secondary">RERA <span class="required-asterisk">*</span></h6>
+                  <input type="text" class="form-control" id="rera" [(ngModel)]="addproject.rera" name="rera" required>
+                </div>
+                <div class="col">
+                  <h6 class="text-secondary">Completion Report <span class="required-asterisk">*</span></h6>
+                  <input type="date" class="form-control" id="dateOfCompletionReport2"
+                    [(ngModel)]="addproject.dateOfCompletionReport2" name="dateOfCompletionReport2" required>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <h6 class="text-secondary">Map <span class="required-asterisk">*</span></h6>
+                  <input type="text" class="form-control" id="map" [(ngModel)]="addproject.map" name="map" required>
+                </div>
+              </div>
+
+              <div class="row mt-5">
+                <div class="col form-heading">
+                  <h6 class="text-secondary fst-italic">Building Image</h6>
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col">
+                  <label for="profile" class="form-label">Image</label>
+                  <input type="file" class="form-control" name="files" multiple (change)="selectFile($event)">
+                  <br>
+                  <div class="col-md-6">
+                    <button type="submit" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+                  </div>
+                  <hr />
+
+                </div>
+              </div>
+              <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+
+
+              <br>
+              <div class="col-md-12 text-center">
+                <button type="submit" (click)="saveProject()" [disabled]="!myForm.form.valid">Add Data</button>
+              </div>
+            </div>
+            <div *ngIf="submitted">
+              <h4>Data was submitted successfully!</h4>
+
+              <button type="submit" (click)="newAddproject()">Back</button>
+            </div>
+
+
+          </form>
+
+
+        </div>
+        <!-- End Quote Form -->
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- End Get Started Section -->
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+
+  <div class="footer-content position-relative">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-info">
+            <h3>TNHB</h3>
+            <p>
+              CMDA Complex, E&C Market Road,
+              Koyambedu, <br>
+              Chennai - 600 107<br><br>
+              <strong>Phone:</strong>(044)24794201<br>
+              <strong>Email:</strong>contact@tnhb.com<br>
+            </p>
+            <div class="social-links d-flex mt-3">
+              <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div><!-- End footer info column-->
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-legal text-center position-relative">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>BOCXY</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+
+      </div>
+    </div>
+  </div>
+
+
+</footer>
+<!-- End Footer -->

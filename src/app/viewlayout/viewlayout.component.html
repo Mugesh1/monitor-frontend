@@ -1,0 +1,212 @@
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header d-flex align-items-center">
+      <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+        <div class="logo-container">
+          <a href="index.html" class="logo">
+            <img src="assets/img/tnhb-logo.png" alt="Center Logo">
+          </a>
+          <span class="logo-text">Tamil Nadu Housing Board</span>
+
+          <a href="#" class="logo">
+            <img src="assets/img/tn_logo.png" alt="Right Logo">
+          </a>
+          <span class="logo-text">தமிழ்நாடு வீட்டு வசதி வாரியம்</span>
+
+          <a href="#" class="logo">
+            <img src="assets/img/100years.png" alt="Right Logo">
+          </a>
+
+          <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+          <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+        </div>
+
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a  style="text-decoration: none;"  [routerLink]="['/home']">Home</a></li>
+            <li><a  style="text-decoration: none; " [routerLink]="['/addproject/add-items-layout']" >Add Layout</a></li>
+            <li><a  style="text-decoration: none;" [routerLink]="['/addproject/add-items']">Add Project</a></li>
+            <li><a  style="text-decoration: none;" [routerLink]="['/report']" >Report</a></li>
+            <li><a  style="text-decoration: none;" [routerLink]="['']">Logout</a></li>
+          </ul>
+        </nav><!-- .navbar -->
+
+      </div>
+    </header><!-- End Header -->
+
+    <main id="main">
+
+      <!-- ======= Breadcrumbs ======= -->
+      <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/breadcrumbs-bg.jpg');">
+        <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+          <h2>Project</h2>
+          <ol>
+            <!-- <li><a href="index.html">Home</a></li> -->
+            <li *ngFor="let projects of project">{{projects.project_name }}</li>
+          </ol>
+
+        </div>
+      </div><!-- End Breadcrumbs -->
+
+      <!-- ======= Service Details Section ======= -->
+      <section id="service-details" class="service-details">
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-item position-relative">
+
+          <div class="single" *ngFor="let projects of project">
+            <div class="comment-form wow fadeInUp">
+              <a class="btn " routerLink="/editlayout/{{ projects.id }}" style="display: inline-block;"><i class="bi bi-pen-fill"></i> Edit</a>
+              <a class="btn ml-3" (click)="Deletelayout( projects.project_name )" style="display: inline-block;"><i class="bi bi-trash-fill"></i> Delete</a>
+
+              <a class="btn ml-3"  (click)="Print()" style="display: inline-block;"><i class="bi bi-cloud-download-fill"></i> Download Report</a>
+
+              <a class="btn ml-3" href="{{projects.map}}" target="_blank" style="display: inline-block;"><i class="bi-geo-alt-fill"></i> Location</a>
+
+              </div>
+  <br>
+
+            <ul>
+              <li><i class="bi bi-check-circle"></i> <h6>Last Updated by  <span style="color:blue">  {{ projects.editby }}</span> on {{ projects.timestamp}}</h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span style="font-weight: bold;">Uptodate images of the Project</span></li>
+
+            </ul>
+          </div>
+  </div>
+          <div class="row gy-4">
+          <div class="col-lg-8">
+            <div style="text-align: center;  color: red;" *ngIf="project.length === 0"> <h2>
+
+              No Record Found for Current Month</h2></div>
+          <div class="services-list" *ngFor="let projects of project">
+
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">Project Name :-</span>  <span  style="font-weight: bold;font-size: 20px;" >{{projects.project_name}}  </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">Project Code :-</span>  <span  style="font-weight: bold;font-size: 20px;" >{{projects.uniquecode}}  </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">City/Rural :-</span>  <span  style="font-weight: bold;font-size: 20px;" >{{projects.citynrural}}  </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">Circle :-</span>  <span  style="font-weight: bold;font-size: 20px;" >{{projects.circle}}  </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">Division :-</span>  <span  style="font-weight: bold;font-size: 20px;" >{{projects.division}}  </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">Village :-</span>  <span  style="font-weight: bold;font-size: 20px;" > {{projects.village}} </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">SF/TS No :-</span>  <span  style="font-weight: bold;font-size: 20px;" > {{projects.sftsno}} </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">Extent (Acres) :-</span>  <span  style="font-weight: bold;font-size: 20px;" > {{projects.extentacres}} </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">B.R_No_Date :-</span>  <span  style="font-weight: bold;font-size: 20px;" > {{projects.brnodate}} </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">FS Value(Rs):-</span>  <span  style="font-weight: bold;font-size: 20px;" > Rs.{{projects.fsvaluers}} </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">WC79(Rs) :-</span>  <span  style="font-weight: bold;font-size: 20px;" > Rs.{{projects.wc79rs}} </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">RFS(Rs) :-</span>  <span  style="font-weight: bold;font-size: 20px;" > Rs.{{projects.rfsrs}} </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">Layout Approval :-</span>  <span  style="font-weight: bold;font-size: 20px;" > {{projects.layoutapproval}} </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">LB Approval :-</span>  <span  style="font-weight: bold;font-size: 20px;" > {{projects.lbapproval}} </span> <br /></a>
+
+
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">Contractor :-</span>  <span  style="font-weight: bold;font-size: 20px;" >{{projects.contractor}}  </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">Agreement Value(Rs) :-</span>  <span  style="font-weight: bold;font-size: 20px;" >Rs.{{projects.agreementvalue}} </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">DOC:-</span>  <span  style="font-weight: bold;font-size: 20px;" > {{projects.doc}} </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">DDC :-</span>  <span  style="font-weight: bold;font-size: 20px;" > {{projects.ddc}} </span> <br /></a>
+
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">Expenditure(Rs) :-</span>  <span  style="font-weight: bold;font-size: 20px;" >Rs.{{projects.expenditure}} </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;"> LC released(current month)(Rs) :-</span>  <span  style="font-weight: bold;font-size: 20px;" > Rs.{{projects.lcreleased}} </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">Physical Progress(%) :-</span>  <span  style="font-weight: bold;font-size: 20px;" > {{projects.physicalprogress}} </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;"> Financial Progress(%) :-</span>  <span  style="font-weight: bold;font-size: 20px;" > {{projects.financialprogress}} </span> <br /></a>
+
+            <a style="display: block; text-align: left;"> <span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">Stage of Work :-</span>  <span  style="font-weight: bold;font-size: 20px;" > {{projects.stageofwork}} </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">Gift Deed :-</span>  <span  style="font-weight: bold;font-size: 20px;" >{{projects.giftdeed}} </span> <br /></a>
+            <a style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">HO to LB :-</span>  <span  style="font-weight: bold;font-size: 20px;" > {{projects.hotolb}} </span> <br /></a>
+
+            <a  style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">Cost(Rs) :-</span>  <span  style="font-weight: bold;font-size: 20px;" > Rs.{{projects.cost}}  </span> <br /></a>
+            <a  style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">RERA :-</span>  <span  style="font-weight: bold;font-size: 20px;" > {{projects.rera}}  </span> <br /></a>
+            <a  style="display: block; text-align: left;"><span style="font-size: 16px;width: 300px;clear: left;float: left;text-align: left;padding-right: 10px;">Completion Report :-</span>  <span  style="font-weight: bold;font-size: 20px;" > {{projects.completionreport}}  </span> <br /></a>
+              </div>
+
+
+            </div>
+
+            <div class="col-lg-4">
+
+
+            <div class="container row">
+                <div class="col-md-12">
+                    <div>
+                        <div class="card-header"></div>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item" *ngFor="let file of pdfFiles">
+                            <ng-container *ngIf="file.type === 'application/pdf'">
+                              <a [href]="file.url" download="{{ file.name }}.pdf">{{ file.name }}</a>
+                              <a class="btn ml-3" (click)="onDeleteFile($event, file.url)">
+                                <i class="fas fa-trash-alt"></i>
+                              </a>
+                            </ng-container>
+                          </li>
+                        </ul>
+                        <ul
+                          class="list-group list-group-flush"
+                          *ngFor="let file of fileInfos ">
+                          <li class="list-group-item">
+                            <img src="{{ file.url }}" alt="{{ file.name }}" width="100%"/>
+                          </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section><!-- End Service Details Section -->
+
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+
+      <div class="footer-content position-relative">
+        <div class="container">
+          <div class="row">
+
+            <div class="col-lg-4 col-md-6">
+              <div class="footer-info">
+                <h3>TNHB</h3>
+                <p>
+                  CMDA Complex, E&C Market Road,
+                  Koyambedu,  <br>
+                  Chennai - 600 107<br><br>
+                  <strong>Phone:</strong>(044)24794201<br>
+                  <strong>Email:</strong>contact@tnhb.com<br>
+                </p>
+                <div class="social-links d-flex mt-3">
+                  <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
+                  <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
+                  <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
+                  <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div><!-- End footer info column-->
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-legal text-center position-relative">
+        <div class="container">
+          <div class="copyright">
+            &copy; Copyright <strong><span>BOCXY</span></strong>. All Rights Reserved
+          </div>
+
+        </div>
+      </div>
+
+    </footer>
+    <!-- End Footer -->
+
+

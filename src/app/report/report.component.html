@@ -1,0 +1,236 @@
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center">
+    <div
+      class="container-fluid container-xl d-flex align-items-center justify-content-between"
+    >
+      <div class="logo-container">
+        <a href="index.html" class="logo">
+          <img src="assets/img/tnhb-logo.png" alt="Center Logo" />
+        </a>
+        <span class="logo-text">Tamil Nadu Housing Board</span>
+
+        <a href="#" class="logo">
+          <img src="assets/img/tn_logo.png" alt="Right Logo" />
+        </a>
+        <span class="logo-text">தமிழ்நாடு வீட்டு வசதி வாரியம்</span>
+
+        <a href="#" class="logo">
+          <img src="assets/img/100years.png" alt="Right Logo" />
+        </a>
+
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      </div>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li>
+            <a style="text-decoration: none" [routerLink]="['/home']">Home</a>
+          </li>
+          <li>
+            <a
+              style="text-decoration: none"
+              [routerLink]="['/addproject/add-items-layout']"
+              >Add Layout</a
+            >
+          </li>
+          <li>
+            <a
+              style="text-decoration: none"
+              [routerLink]="['/addproject/add-items']"
+              >Add Project</a
+            >
+          </li>
+          <li>
+            <a
+              style="text-decoration: none"
+              [routerLink]="['/report']"
+              class="active"
+              >Report</a
+            >
+          </li>
+          <li>
+            <a style="text-decoration: none" [routerLink]="['']">Logout</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <main id="main">
+    <!-- ======= Breadcrumbs ======= -->
+    <div
+      class="breadcrumbs d-flex align-items-center"
+      style="background-image: url('assets/img/breadcrumbs-bg.jpg')"
+    >
+      <div
+        class="container position-relative d-flex flex-column align-items-center"
+        data-aos="fade"
+      >
+        <h2>TNHB's Ongoing Schemes Status</h2>
+      </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Report for {{ thisMonthName }}</h2>
+        </div>
+
+        <ul class="nav nav-tabs" id="myTabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="layout-tab" data-toggle="tab" href="#layout" role="tab" aria-controls="layout" aria-selected="true">Monitoring of Layout Development</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="building-tab" data-toggle="tab" href="#building" role="tab" aria-controls="building" aria-selected="false">Monitoring Of Projects</a>
+          </li>
+        </ul>
+
+        <!-- Add this section for the layout tab -->
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="layout" role="tabpanel" aria-labelledby="layout-tab">
+   <br>
+    <div class="btn-group ml-3">
+      <button type="button" class="btn btn-warning ml-3" (click)="Print()">
+        <i class="bi bi-cloud-download-fill" style="color: black"></i>
+        Download
+      </button>
+    </div>
+
+    <br />
+    <br />
+    <div class="row justify-content-between gy-4">
+      <div style="text-align: center; color: red" *ngIf="alllayout.length === 0">
+        <h2>No Record Found for Current Month</h2>
+      </div>
+      <table *ngIf="alllayout.length > 0">
+        <tr>
+          <th>Unique code</th>
+          <th>Project Name</th>
+          <th>Date of Completion</th>
+          <th>Cost</th>
+          <th>Expenditure</th>
+          <th>LC Released(current)</th>
+        </tr>
+        <tr *ngFor="let project of alllayout; let i = index">
+          <td>{{ project.uniquecode }}{{ i + 1 }}</td>
+          <td>{{ project.project_name }}</td>
+          <td>{{ project.doc }}</td>
+          <td>{{ project.cost }}</td>
+          <td>{{ project.expenditure }}</td>
+          <td>{{ project.lcreleased }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Add this section for the building tab -->
+  <div class="tab-pane fade" id="building" role="tabpanel" aria-labelledby="building-tab">
+    <br>
+    <div class="btn-group ml-3">
+      <button type="button" class="btn btn-warning ml-3" (click)="Print()">
+        <i class="bi bi-cloud-download-fill" style="color: black"></i>
+        Download
+      </button>
+    </div>
+
+    <br />
+    <br />
+    <div class="row justify-content-between gy-4">
+      <div style="text-align: center; color: red" *ngIf="allProjects.length === 0">
+        <h2>No Record Found for Current Month</h2>
+      </div>
+      <table *ngIf="allProjects.length > 0">
+        <tr>
+          <th>Unique code</th>
+          <th>Project Name</th>
+          <th>Date of Completion</th>
+          <th>Cost</th>
+          <th>Expenditure</th>
+          <th>PMC Expenditure</th>
+          <th>LC Released(current)</th>
+        </tr>
+        <tr *ngFor="let project of allProjects; let i = index">
+          <td>{{ project.uniquecode }}{{ i + 1 }}</td>
+          <td>{{ project.project_name }}</td>
+          <td>{{ project.dueDateOfCompletion }}</td>
+          <td>{{ project.costingStatus }}</td>
+          <td>{{ project.expenditureSoFar }}</td>
+          <td>{{ project.pmcExpenditureSoFar }}</td>
+          <td>{{ project.lc_released_current_month }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+        </div>
+
+    </section>
+  </main>
+
+  <!-- End Services Section -->
+
+  <!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="footer-content position-relative">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-info">
+              <h3>TNHB</h3>
+              <p>
+                CMDA Complex, E&C Market Road, Koyambedu, <br />
+                Chennai - 600 107<br /><br />
+                <strong>Phone:</strong>(044)24794201<br />
+                <strong>Email:</strong>contact@tnhb.com<br />
+              </p>
+              <div class="social-links d-flex mt-3">
+                <a
+                  href="#"
+                  class="d-flex align-items-center justify-content-center"
+                  ><i class="bi bi-twitter"></i
+                ></a>
+                <a
+                  href="#"
+                  class="d-flex align-items-center justify-content-center"
+                  ><i class="bi bi-facebook"></i
+                ></a>
+                <a
+                  href="#"
+                  class="d-flex align-items-center justify-content-center"
+                  ><i class="bi bi-instagram"></i
+                ></a>
+                <a
+                  href="#"
+                  class="d-flex align-items-center justify-content-center"
+                  ><i class="bi bi-linkedin"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-legal text-center position-relative">
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>BOCXY</span></strong
+          >. All Rights Reserved
+        </div>
+        <div class="credits"></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- <div id="preloader"></div> -->
+</body>
